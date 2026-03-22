@@ -1,152 +1,162 @@
 // ===== キャラクター + ユニット情報 =====
 const characters = [
-  // ===== fine =====
+  // fine
   { name: "天祥院英智", unit: "fine", unitKeywords: ["fine", "フィーネ"] },
   { name: "日々樹渉", unit: "fine", unitKeywords: ["fine", "フィーネ"] },
   { name: "姫宮桃李", unit: "fine", unitKeywords: ["fine", "フィーネ"] },
   { name: "伏見弓弦", unit: "fine", unitKeywords: ["fine", "フィーネ"] },
 
-  // ===== Trickstar =====
+  // Trickstar
   { name: "氷鷹北斗", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター"] },
   { name: "明星スバル", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター"] },
   { name: "遊木真", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター"] },
   { name: "衣更真緒", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター"] },
 
-  // ===== 流星隊 =====
+  // 流星隊
   { name: "守沢千秋", unit: "流星隊", unitKeywords: ["流星隊", "りゅうせいたい"] },
   { name: "深海奏汰", unit: "流星隊", unitKeywords: ["流星隊", "りゅうせいたい"] },
   { name: "南雲鉄虎", unit: "流星隊", unitKeywords: ["流星隊", "りゅうせいたい"] },
   { name: "高峯翠", unit: "流星隊", unitKeywords: ["流星隊", "りゅうせいたい"] },
   { name: "仙石忍", unit: "流星隊", unitKeywords: ["流星隊", "りゅうせいたい"] },
 
-  // ===== ALKALOID =====
+  // ALKALOID
   { name: "天城一彩", unit: "ALKALOID", unitKeywords: ["ALKALOID", "アルカロイド"] },
   { name: "白鳥藍良", unit: "ALKALOID", unitKeywords: ["ALKALOID", "アルカロイド"] },
   { name: "礼瀬マヨイ", unit: "ALKALOID", unitKeywords: ["ALKALOID", "アルカロイド"] },
   { name: "風早巽", unit: "ALKALOID", unitKeywords: ["ALKALOID", "アルカロイド"] },
 
-  // ===== Eden =====
+  // Eden
   { name: "乱凪砂", unit: "Eden", unitKeywords: ["Eden", "エデン"] },
   { name: "巴日和", unit: "Eden", unitKeywords: ["Eden", "エデン"] },
   { name: "七種茨", unit: "Eden", unitKeywords: ["Eden", "エデン"] },
   { name: "漣ジュン", unit: "Eden", unitKeywords: ["Eden", "エデン"] },
 
-  // ===== Valkyrie =====
+  // Valkyrie
   { name: "斎宮宗", unit: "Valkyrie", unitKeywords: ["Valkyrie", "ヴァルキュリー"] },
   { name: "影片みか", unit: "Valkyrie", unitKeywords: ["Valkyrie", "ヴァルキュリー"] },
 
-  // ===== 2wink =====
+  // 2wink
   { name: "葵ひなた", unit: "2wink", unitKeywords: ["2wink", "ツインク"] },
   { name: "葵ゆうた", unit: "2wink", unitKeywords: ["2wink", "ツインク"] },
 
-  // ===== Crazy:B =====
-  { name: "天城燐音", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレイジービー", "クレビ"] },
-  { name: "HiMERU", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレイジービー", "クレビ"] },
-  { name: "桜河こはく", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレイジービー", "クレビ"] },
-  { name: "椎名ニキ", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレイジービー", "クレビ"] },
+  // Crazy:B
+  { name: "天城燐音", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ"] },
+  { name: "HiMERU", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ"] },
+  { name: "桜河こはく", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ"] },
+  { name: "椎名ニキ", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ"] },
 
-  // ===== UNDEAD =====
+  // UNDEAD
   { name: "朔間零", unit: "UNDEAD", unitKeywords: ["UNDEAD", "アンデッド"] },
   { name: "羽風薫", unit: "UNDEAD", unitKeywords: ["UNDEAD", "アンデッド"] },
   { name: "大神晃牙", unit: "UNDEAD", unitKeywords: ["UNDEAD", "アンデッド"] },
   { name: "乙狩アドニス", unit: "UNDEAD", unitKeywords: ["UNDEAD", "アンデッド"] },
 
-  // ===== Ra*bits =====
+  // Ra*bits
   { name: "仁兎なずな", unit: "Ra*bits", unitKeywords: ["Ra*bits", "ラビッツ"] },
   { name: "天満光", unit: "Ra*bits", unitKeywords: ["Ra*bits", "ラビッツ"] },
   { name: "真白友也", unit: "Ra*bits", unitKeywords: ["Ra*bits", "ラビッツ"] },
   { name: "紫之創", unit: "Ra*bits", unitKeywords: ["Ra*bits", "ラビッツ"] },
 
-  // ===== 紅月 =====
+  // 紅月
   { name: "蓮巳敬人", unit: "紅月", unitKeywords: ["紅月", "あかつき"] },
   { name: "鬼龍紅郎", unit: "紅月", unitKeywords: ["紅月", "あかつき"] },
   { name: "神崎颯馬", unit: "紅月", unitKeywords: ["紅月", "あかつき"] },
+  { name: "滝維吹", unit: "紅月", unitKeywords: ["紅月", "あかつき"] },
 
-  // ===== MELLOW DEAR US（メロアス） =====
-  { name: "小鹿ジュイス", unit: "MELLOW DEAR US", unitKeywords: ["MELLOW DEAR US", "メロアス"] },
-  { name: "円果望見", unit: "MELLOW DEAR US", unitKeywords: ["MELLOW DEAR US", "メロアス"] },
-  { name: "久遠舞珠", unit: "MELLOW DEAR US", unitKeywords: ["MELLOW DEAR US", "メロアス"] },
-  { name: "甘楽チトセ", unit: "MELLOW DEAR US", unitKeywords: ["MELLOW DEAR US", "メロアス"] },
+  // MELLOW DEAR US
+  { name: "小鹿ジュイス", unit: "MELLOW DEAR US", unitKeywords: ["メロアス"] },
+  { name: "円果望見", unit: "MELLOW DEAR US", unitKeywords: ["メロアス"] },
+  { name: "久遠舞珠", unit: "MELLOW DEAR US", unitKeywords: ["メロアス"] },
+  { name: "甘楽チトセ", unit: "MELLOW DEAR US", unitKeywords: ["メロアス"] },
 
-  // ===== Knights =====
+  // Knights
   { name: "月永レオ", unit: "Knights", unitKeywords: ["Knights", "ナイツ"] },
   { name: "瀬名泉", unit: "Knights", unitKeywords: ["Knights", "ナイツ"] },
   { name: "朔間凛月", unit: "Knights", unitKeywords: ["Knights", "ナイツ"] },
   { name: "鳴上嵐", unit: "Knights", unitKeywords: ["Knights", "ナイツ"] },
   { name: "朱桜司", unit: "Knights", unitKeywords: ["Knights", "ナイツ"] },
 
-  // ===== Switch =====
+  // Switch
   { name: "逆先夏目", unit: "Switch", unitKeywords: ["Switch", "スウィッチ"] },
   { name: "青葉つむぎ", unit: "Switch", unitKeywords: ["Switch", "スウィッチ"] },
   { name: "春川宙", unit: "Switch", unitKeywords: ["Switch", "スウィッチ"] },
 
-  // ===== MaM =====
+  // MaM
   { name: "三毛縞斑", unit: "MaM", unitKeywords: ["MaM", "マム"] },
 
-  // ===== Double Face =====
+  // Double Face
   { name: "三毛縞斑", unit: "Double Face", unitKeywords: ["Double Face", "ダブルフェイス"] },
   { name: "桜河こはく", unit: "Double Face", unitKeywords: ["Double Face", "ダブルフェイス"] },
 
-  // ===== Special For Princess!（エスプリ） =====
-  { name: "エス（冴霧 笑主）", unit: "Special For Princess", unitKeywords: ["Special For Princess", "エスプリ"] },
-  { name: "カンナ（名都 神無）", unit: "Special For Princess", unitKeywords: ["Special For Princess", "エスプリ"] },
-  { name: "ユメ（花群 冬芽）", unit: "Special For Princess", unitKeywords: ["Special For Princess", "エスプリ"] },
-  { name: "ライカ（宝丈 萊香）", unit: "Special For Princess", unitKeywords: ["Special For Princess", "エスプリ"] },
+  // Special For Princess
+  { name: "エス（冴霧 笑主）", unit: "Special For Princess", unitKeywords: ["エスプリ"] },
+  { name: "カンナ（名都 神無）", unit: "Special For Princess", unitKeywords: ["エスプリ"] },
+  { name: "ユメ（花群 冬芽）", unit: "Special For Princess", unitKeywords: ["エスプリ"] },
+  { name: "ライカ（宝丈 萊香）", unit: "Special For Princess", unitKeywords: ["エスプリ"] },
 
-  // ===== 教師 =====
+  // 教師
   { name: "佐賀美陣", unit: "教師", unitKeywords: ["教師"] },
   { name: "椚章臣", unit: "教師", unitKeywords: ["教師"] },
 ];
 
-// ===== グッズ一覧 =====
-const goodsList = [
-  "限定招募 ポラロイド（第一弾、開花前&開花後）",
-  "序曲写真カード",
-  "あんスタチップス",
-  "TRIPシリーズ",
-  "ぱしゃっつ",
-  "新春商品シリーズ",
-  "限定スカウトチェキ風カード",
-  "招募チェキ",
-  "招募ポラロイド",
-];
+// ===== グッズカテゴリ =====
+const goodsCategories = {
+  "アニメイトカフェ関連": [
+    { name: "アクスタ", keywords: ["アクリルスタンド"] },
+    { name: "コースター", keywords: [] },
+    { name: "ステッカー", keywords: ["シール"] },
+  ],
 
-// ===== 公式のユニット並び順（あなた指定の順番） =====
+  "ぱしゃっつ（P.A.shots!!）": [
+    // Vol.1〜Vol.6 × Private / Action
+    { name: "ぱしゃっつ Vol.1 Private", keywords: ["P.A.shots!!", "Vol.1", "Private"] },
+    { name: "ぱしゃっつ Vol.1 Action", keywords: ["P.A.shots!!", "Vol.1", "Action"] },
+
+    { name: "ぱしゃっつ Vol.2 Private", keywords: ["P.A.shots!!", "Vol.2", "Private"] },
+    { name: "ぱしゃっつ Vol.2 Action", keywords: ["P.A.shots!!", "Vol.2", "Action"] },
+
+    { name: "ぱしゃっつ Vol.3 Private", keywords: ["P.A.shots!!", "Vol.3", "Private"] },
+    { name: "ぱしゃっつ Vol.3 Action", keywords: ["P.A.shots!!", "Vol.3", "Action"] },
+
+    { name: "ぱしゃっつ Vol.4 Private", keywords: ["P.A.shots!!", "Vol.4", "Private"] },
+    { name: "ぱしゃっつ Vol.4 Action", keywords: ["P.A.shots!!", "Vol.4", "Action"] },
+
+    { name: "ぱしゃっつ Vol.5 Private", keywords: ["P.A.shots!!", "Vol.5", "Private"] },
+    { name: "ぱしゃっつ Vol.5 Action", keywords: ["P.A.shots!!", "Vol.5", "Action"] },
+
+    { name: "ぱしゃっつ Vol.6 Private", keywords: ["P.A.shots!!", "Vol.6", "Private"] },
+    { name: "ぱしゃっつ Vol.6 Action", keywords: ["P.A.shots!!", "Vol.6", "Action"] },
+
+  // TRIPシリーズ（単独）
+  { name: "ぱしゃっつ TRIPシリーズ", keywords: ['ALBUM SERIES "TRIP"', "P.A.shots!!"] },
+
+  ],
+
+  "中国/海外限定グッズ": [
+    { name: "招募チェキ", keywords: ["限定スカウトチェキ風カード", "限定招募ポラロイド", "新春商品シリーズ"] },
+    { name: "序曲写真カード", keywords: [] },
+  ],
+
+  "その他": [
+    { name: "あんスタチップス カード", keywords: [] }
+  ]
+};
+
+// ===== 公式ユニット順 =====
 const officialUnitOrder = [
-  // スタプロ
-  "fine",
-  "Trickstar",
-  "流星隊",
-  "ALKALOID",
-
-  // コズプロ
-  "Eden",
-  "Valkyrie",
-  "2wink",
-  "Crazy:B",
-
-  // リズリン
-  "UNDEAD",
-  "Ra*bits",
-  "紅月",
-  "MELLOW DEAR US",
-
-  // ニューディメ
-  "Knights",
-  "Switch",
-  "MaM",
-  "Double Face",
-  "Special For Princess",
-
-  // 教師
+  "fine", "Trickstar", "流星隊", "ALKALOID",
+  "Eden", "Valkyrie", "2wink", "Crazy:B",
+  "UNDEAD", "Ra*bits", "紅月", "MELLOW DEAR US",
+  "Knights", "Switch", "MaM", "Double Face", "Special For Princess",
   "教師"
 ];
 
-// ===== 初期化：ユニットごとに optgroup を作成 =====
+// ===== 初期化 =====
 window.addEventListener("DOMContentLoaded", () => {
   const charSelect = document.getElementById("characters");
   const goodsSelect = document.getElementById("goods");
 
+  // キャラ
   const unitMap = {};
   characters.forEach(c => {
     if (!unitMap[c.unit]) unitMap[c.unit] = [];
@@ -174,19 +184,66 @@ window.addEventListener("DOMContentLoaded", () => {
     charSelect.appendChild(group);
   });
 
-  goodsList.forEach(g => {
-    const opt = document.createElement("option");
-    opt.value = g;
-    opt.textContent = g;
-    goodsSelect.appendChild(opt);
+  // グッズ（通常）
+  Object.keys(goodsCategories).forEach(category => {
+    const group = document.createElement("optgroup");
+    group.label = category;
+
+    goodsCategories[category].forEach(item => {
+      const opt = document.createElement("option");
+      opt.value = item.name;
+      opt.textContent = item.name;
+      opt.dataset.keywords = JSON.stringify(item.keywords);
+      group.appendChild(opt);
+    });
+
+    goodsSelect.appendChild(group);
   });
+
+  // ▼ コレ缶（特別扱い）
+  const badgeGroup = document.createElement("optgroup");
+  badgeGroup.label = "缶バッジ";
+
+  const badgeOpt = document.createElement("option");
+  badgeOpt.value = "コレ缶";
+  badgeOpt.textContent = "コレ缶（年度・月・Side を選択）";
+  badgeOpt.dataset.keywords = JSON.stringify(["コレクション缶バッジ"]);
+  badgeGroup.appendChild(badgeOpt);
+
+  goodsSelect.appendChild(badgeGroup);
 });
 
+// ===== コレ缶 UI の表示切替 =====
+document.getElementById("goods").addEventListener("change", () => {
+  const selected = [...document.getElementById("goods").selectedOptions].map(o => o.value);
+  const hasBadge = selected.includes("コレ缶");
+  document.getElementById("badge-options").classList.toggle("hidden", !hasBadge);
+});
+
+// ===== コレ缶の正式名称生成 =====
+function buildBadgeName() {
+  const year = document.getElementById("badge-year").value;
+  const month = document.getElementById("badge-month").value;
+  const side = document.getElementById("badge-side").value;
+
+  if (!year || !month || !side) return "";
+  return `コレ缶［${year} ${month}］-${side} Side-`;
+}
+
 // ===== 商品名生成 =====
-function generateTitle(chars, goods, count, mainGoodInput) {
+function generateTitle(chars, goods, count, mainGoodInput, units) {
   const template = document.getElementById("template-title").value;
 
-  const nameText = chars.length > 0 ? chars.join("・") : "キャラクター";
+  // ▼ キャラがいない場合はユニット名を使う
+  let nameText = "";
+  if (chars.length > 0) {
+    nameText = chars.join("・");
+  } else if (units.length > 0) {
+    nameText = units.join("・");
+  } else {
+    nameText = "キャラクター";
+  }
+
   let mainGood = mainGoodInput.trim();
   if (!mainGood) mainGood = goods[0] || "";
 
@@ -205,18 +262,27 @@ function generateDescription(chars, units, goods, count) {
   else if (units.length > 0) displayName = units.join("・");
   else displayName = "キャラクター";
 
-  const goodsText = goods.length ? goods.join("\n") : "";
+  const badgeFullName = buildBadgeName();
+  const goodsList = [...goods];
+
+  if (goods.includes("コレ缶") && badgeFullName) {
+    goodsList.push(badgeFullName);
+  }
+
+  const goodsText = goodsList.join("\n");
   const countText = count || "セット";
 
   const unitKeywordsSet = new Set();
   const charSearchSet = new Set(chars);
 
+  // キャラ検索ワード
   characters.forEach(c => {
     if (chars.includes(c.name)) {
       c.unitKeywords.forEach(u => unitKeywordsSet.add(u));
     }
   });
 
+  // ユニット検索ワード
   units.forEach(unitName => {
     characters
       .filter(c => c.unit === unitName)
@@ -225,6 +291,27 @@ function generateDescription(chars, units, goods, count) {
         c.unitKeywords.forEach(u => unitKeywordsSet.add(u));
       });
   });
+
+  // グッズ検索ワード
+  goods.forEach(g => {
+    const option = [...document.getElementById("goods").options].find(o => o.value === g);
+    if (option && option.dataset.keywords) {
+      JSON.parse(option.dataset.keywords).forEach(k => unitKeywordsSet.add(k));
+    }
+  });
+
+  // コレ缶検索ワード
+  if (goods.includes("コレ缶")) {
+    const year = document.getElementById("badge-year").value;
+    const month = document.getElementById("badge-month").value;
+    const side = document.getElementById("badge-side").value;
+
+    if (year) unitKeywordsSet.add(year);
+    if (month) unitKeywordsSet.add(month);
+    if (side) unitKeywordsSet.add(side);
+
+    unitKeywordsSet.add("コレクション缶バッジ");
+  }
 
   const searchWords = [...unitKeywordsSet, ...charSearchSet].join("\n");
 
@@ -246,7 +333,7 @@ function generate() {
   const count = document.getElementById("count").value;
   const mainGood = document.getElementById("main-good").value;
 
-  const title = generateTitle(chars, goods, count, mainGood);
+  const title = generateTitle(chars, goods, count, mainGood, units);
   const desc = generateDescription(chars, units, goods, count);
 
   document.getElementById("result-title").textContent = title;

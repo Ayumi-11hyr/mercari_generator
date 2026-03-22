@@ -2,12 +2,12 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
   <title>メルカリ出品文ジェネレーター（あんスタ）</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
   <style>
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, sans-serif;
       padding: 16px;
       max-width: 900px;
       margin: 0 auto;
@@ -24,14 +24,7 @@
     }
     select[multiple] { height: 260px; }
     button { cursor: pointer; }
-    .result-box {
-      border: 1px solid #ccc;
-      padding: 8px;
-      border-radius: 4px;
-      background: #fafafa;
-      margin-top: 8px;
-    }
-    pre { white-space: pre-wrap; margin: 4px 0; }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
@@ -44,33 +37,71 @@
 <h2>② グッズ選択（複数可）</h2>
 <select id="goods" multiple></select>
 
+<!-- ▼ コレ缶を選んだときだけ表示される追加選択欄 -->
+<div id="badge-options" class="hidden">
+  <h2>コレ缶：年度</h2>
+  <select id="badge-year">
+    <option value="">選択してください</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+  </select>
+
+  <h2>コレ缶：月</h2>
+  <select id="badge-month">
+    <option value="">選択してください</option>
+    <option value="Jan.">Jan.</option>
+    <option value="Feb.">Feb.</option>
+    <option value="Mar.">Mar.</option>
+    <option value="Apr.">Apr.</option>
+    <option value="May.">May.</option>
+    <option value="Jun.">Jun.</option>
+    <option value="Jul.">Jul.</option>
+    <option value="Aug.">Aug.</option>
+    <option value="Sep.">Sep.</option>
+    <option value="Oct.">Oct.</option>
+    <option value="Nov.">Nov.</option>
+    <option value="Dec.">Dec.</option>
+  </select>
+
+  <h2>コレ缶：Side</h2>
+  <select id="badge-side">
+    <option value="">選択してください</option>
+    <option value="Casual">Casual</option>
+    <option value="Idol">Idol</option>
+  </select>
+</div>
+
 <h2>③ 枚数・セット数</h2>
-<input id="count" placeholder="10枚セット">
+<input id="count" placeholder="10点">
 
 <h2>④ 商品名に入れる代表グッズ（任意）</h2>
-<input id="main-good" placeholder="例：限定招募ポラロイド">
+<input id="main-good" placeholder="例：コレ缶">
 
 <hr>
 
-<h2>⑤ 商品名テンプレート（自由編集）</h2>
+<h2>⑤ 商品名テンプレート</h2>
 <textarea id="template-title" rows="2">{NAME} {GOOD} {COUNT}</textarea>
 
-<h2>⑥ 説明文テンプレート（自由編集）</h2>
+<h2>⑥ 説明文テンプレート</h2>
 <textarea id="template-description" rows="14">
-★説明文をご覧いただき、質問なければ即購入いただいて問題ありません。
-
 ●商品概要
 {NAME}　{COUNT}
 {GOODS}
 
+
 ●梱包方法
-以下で梱包し、封筒で郵送します。
-　画像の状態→まとめてOPP袋→両面厚紙補強→水濡れ防止
+まとめてOPP袋→厚紙補強→水濡れ防止
+
 
 ●商品の状態
 開封のみ、未使用品
-※中国グッズはカードの性質により、少し反りが見られます。
-※素人保管ですので、初期傷など気にされる場合は購入お控えください。
+※素人保管のため気にされる方は購入お控えください
+
+
+
+
+
 
 検索用
 {SEARCH}
@@ -79,7 +110,7 @@
 <button onclick="generate()">商品名・説明文を生成</button>
 
 <h2>生成結果</h2>
-<div class="result-box">
+<div>
   <strong>【商品名】</strong>
   <pre id="result-title"></pre>
 
