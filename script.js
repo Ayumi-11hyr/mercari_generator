@@ -252,13 +252,21 @@ function generate() {
   document.getElementById("result-title").textContent = title;
   document.getElementById("result-desc").textContent = desc;
 
-  document.getElementById("copy-all").value = `【商品名】\n${title}\n\n【商品説明】\n${desc}`;
+  document.getElementById("copy-title").value = title;
+  document.getElementById("copy-desc").value = desc;
 }
 
 // ===== コピー処理 =====
-function copyAll() {
-  const textarea = document.getElementById("copy-all");
+function copyTitle() {
+  const textarea = document.getElementById("copy-title");
   textarea.select();
   document.execCommand("copy");
-  alert("商品名と説明文をコピーしました。");
+  alert("商品名をコピーしました。");
+}
+
+function copyDesc() {
+  const textarea = document.getElementById("copy-desc");
+  textarea.select();
+  document.execCommand("copy");
+  alert("商品説明をコピーしました。");
 }
