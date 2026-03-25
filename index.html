@@ -6,104 +6,287 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <style>
+    * { box-sizing: border-box; }
     body {
-      font-family: system-ui, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       padding: 16px;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
       line-height: 1.6;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
     }
-    h1 { font-size: 1.4rem; margin-bottom: 0.5rem; }
-    h2 { font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    
+    .container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 8px 0;
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #7f8c8d;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: #34495e;
+      border-left: 4px solid #3498db;
+      padding-left: 12px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
     select, input, button, textarea {
       width: 100%;
       box-sizing: border-box;
-      margin-bottom: 12px;
-      padding: 6px 8px;
-      font-size: 0.95rem;
+      padding: 11px 12px;
+      font-size: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-family: inherit;
+      transition: all 0.3s ease;
     }
-    select[multiple] { height: 260px; }
+
+    select:focus, input:focus, textarea:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+
+    select[multiple] { height: 180px; }
+    textarea { resize: vertical; }
+
     label {
-      display: block;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: #2c3e50;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    label:hover {
+      color: #3498db;
+    }
+
+    label input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      margin-bottom: 0;
+      padding: 0;
+      cursor: pointer;
+      accent-color: #3498db;
+    }
+
+    button {
+      cursor: pointer;
+      background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 20px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .hidden { display: none; }
+
+    hr {
+      margin: 24px 0;
+      border: none;
+      border-top: 2px solid #ecf0f1;
+    }
+
+    pre {
+      background-color: #f8f9fa;
+      padding: 14px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      border-left: 4px solid #3498db;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #7f8c8d;
+      margin: 8px 0;
+      line-height: 1.6;
+    }
+
+    .result-section {
+      background: #f8f9fa;
+      padding: 16px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    .result-title {
+      font-weight: 600;
+      color: #2c3e50;
       margin-bottom: 8px;
       font-size: 0.95rem;
     }
-    label input[type="checkbox"] {
-      width: auto;
-      margin-right: 8px;
-      margin-bottom: 0;
-      padding: 0;
-      vertical-align: middle;
+
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      color: #1565c0;
     }
-    button { cursor: pointer; }
-    .hidden { display: none; }
+
+    /* スマートフォン対応 */
+    @media (max-width: 600px) {
+      body {
+        padding: 8px;
+      }
+
+      .container {
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1rem;
+        margin-top: 16px;
+      }
+
+      select, input, button, textarea {
+        font-size: 16px;
+        padding: 12px;
+      }
+
+      select[multiple] { height: 140px; }
+      pre { font-size: 0.8rem; padding: 10px; }
+      label { font-size: 0.9rem; }
+      
+      button {
+        padding: 11px 16px;
+        font-size: 0.95rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-<h1>メルカリ出品文ジェネレーター（あんスタ）</h1>
-
-<h2>① キャラクター / ユニット選択（複数可）</h2>
-<select id="characters" multiple></select>
-
-<h2>② グッズ選択（複数可）</h2>
-<select id="goods" multiple></select>
-
-<!-- ▼ コレ缶を選んだときだけ表示される追加選択欄 -->
-<div id="badge-options" class="hidden">
-  <h2>コレ缶：年度</h2>
-  <select id="badge-year">
-    <option value="">選択してください</option>
-    <option value="2024">2024</option>
-    <option value="2025">2025</option>
-    <option value="2026">2026</option>
-  </select>
-
-  <h2>コレ缶：月</h2>
-  <select id="badge-month">
-    <option value="">選択してください</option>
-    <option value="Jan.">Jan.</option>
-    <option value="Feb.">Feb.</option>
-    <option value="Mar.">Mar.</option>
-    <option value="Apr.">Apr.</option>
-    <option value="May.">May.</option>
-    <option value="Jun.">Jun.</option>
-    <option value="Jul.">Jul.</option>
-    <option value="Aug.">Aug.</option>
-    <option value="Sep.">Sep.</option>
-    <option value="Oct.">Oct.</option>
-    <option value="Nov.">Nov.</option>
-    <option value="Dec.">Dec.</option>
-  </select>
-
-  <h2>コレ缶：Side</h2>
-  <select id="badge-side">
-    <option value="">選択してください</option>
-    <option value="Casual">Casual</option>
-    <option value="Idol">Idol</option>
-  </select>
+<div class="container">
+  <h1>✨ メルカリ出品文ジェネレーター</h1>
+  <p class="subtitle">あんさんぶるスターズ！限定版</p>
 </div>
 
-<h2>③ 枚数・セット数</h2>
-<input id="count" placeholder="10点">
+<div class="container">
+  <h2>① キャラクター / ユニット選択（複数可）</h2>
+  <div class="info-box">💡 キャラクターまたはユニットを選択してください。複数選択可能です。</div>
+  <select id="characters" multiple></select>
 
-<h2>④ 商品名に入れる代表グッズ（任意）</h2>
-<input id="main-good" placeholder="例：コレ缶">
+  <h2>② グッズ選択（複数可）</h2>
+  <div class="info-box">💡 グッズを選択してください。複数選択可能です。</div>
+  <select id="goods" multiple></select>
 
-<hr>
+  <!-- ▼ コレ缶を選んだときだけ表示される追加選択欄 -->
+  <div id="badge-options" class="hidden">
+    <hr>
+    <h2>コレ缶の詳細を選択</h2>
+    
+    <h3 style="font-size: 0.95rem; margin: 16px 0 8px 0; color: #34495e;">年度</h3>
+    <select id="badge-year" multiple>
+      <option value="">選択してください</option>
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+      <option value="2026">2026</option>
+    </select>
 
-<h2>⑤ 商品の状態（任意）</h2>
-<label><input type="checkbox" id="initial-damage"> 初期傷について記載</label>
-<label><input type="checkbox" id="card-curve"> カードの反りについて記載</label>
+    <h3 style="font-size: 0.95rem; margin: 16px 0 8px 0; color: #34495e;">月</h3>
+    <select id="badge-month" multiple>
+      <option value="">選択してください</option>
+      <option value="Jan.">Jan.</option>
+      <option value="Feb.">Feb.</option>
+      <option value="Mar.">Mar.</option>
+      <option value="Apr.">Apr.</option>
+      <option value="May.">May.</option>
+      <option value="Jun.">Jun.</option>
+      <option value="Jul.">Jul.</option>
+      <option value="Aug.">Aug.</option>
+      <option value="Sep.">Sep.</option>
+      <option value="Oct.">Oct.</option>
+      <option value="Nov.">Nov.</option>
+      <option value="Dec.">Dec.</option>
+    </select>
 
-<hr>
+    <h3 style="font-size: 0.95rem; margin: 16px 0 8px 0; color: #34495e;">Side</h3>
+    <select id="badge-side" multiple>
+      <option value="">選択してください</option>
+      <option value="Casual">Casual</option>
+      <option value="Idol">Idol</option>
+    </select>
+  </div>
+</div>
 
-<h2>⑥ 商品名テンプレート</h2>
-<textarea id="template-title" rows="2">{NAME} {GOOD} {COUNT}</textarea>
+<div class="container">
+  <h2>③ 枚数・セット数</h2>
+  <div class="info-box">💡 数字のみ入力すれば自動で「点セット」が付きます</div>
+  <input id="count" type="number" placeholder="10" inputmode="numeric">
 
-<h2>⑦ 説明文テンプレート</h2>
-<textarea id="template-description" rows="14">
-●商品概要
+  <h2>④ 商品名に入れる代表グッズ（任意）</h2>
+  <input id="main-good" placeholder="例：コレ缶">
+
+  <h2>⑤ 商品の状態（任意）</h2>
+  <label><input type="checkbox" id="initial-damage"> 初期傷について記載</label>
+  <label><input type="checkbox" id="card-curve"> カードの反りについて記載</label>
+</div>
+
+<div class="container">
+  <h2>⑥ 商品名テンプレート</h2>
+  <div class="info-box">
+    <strong>📝 使用可能なプレースホルダー</strong><br>
+    {NAME} = キャラクター名またはユニット名<br>
+    {GOOD} = グッズ名<br>
+    {COUNT} = 枚数・セット数（1点は空）
+  </div>
+  <textarea id="template-title" rows="2">{NAME} {GOOD} {COUNT}</textarea>
+
+  <h2>⑦ 説明文テンプレート</h2>
+  <div class="info-box">
+    <strong>📝 使用可能なプレースホルダー</strong><br>
+    {NAME} = キャラクター名またはユニット名 | {COUNT} = 枚数・セット数<br>
+    {GOODS} = 全グッズ一覧 | {PACKING} = 梱包方法<br>
+    {CONDITIONS} = 商品の状態 | {SEARCH} = 検索用キーワード
+  </div>
+  <textarea id="template-description" rows="12">●商品概要
 {NAME}　{COUNT}
 {GOODS}
 
@@ -120,27 +303,34 @@
 
 
 検索用
-{SEARCH}
-</textarea>
+{SEARCH}</textarea>
 
-<button onclick="generate()">商品名・説明文を生成</button>
-
-<h2>生成結果</h2>
-<div>
-  <strong>【商品名】</strong>
-  <pre id="result-title"></pre>
-
-  <strong>【商品説明】</strong>
-  <pre id="result-desc"></pre>
+  <button onclick="generate()">🎯 商品名・説明文を生成</button>
 </div>
 
-<h2>コピー用：商品名</h2>
-<textarea id="copy-title" rows="2"></textarea>
-<button onclick="copyTitle()">商品名をコピー</button>
+<div class="container">
+  <h2>生成結果</h2>
+  
+  <div class="result-section">
+    <div class="result-title">【商品名】</div>
+    <pre id="result-title"></pre>
+  </div>
 
-<h2>コピー用：商品説明</h2>
-<textarea id="copy-desc" rows="14"></textarea>
-<button onclick="copyDesc()">商品説明をコピー</button>
+  <div class="result-section">
+    <div class="result-title">【商品説明】</div>
+    <pre id="result-desc"></pre>
+  </div>
+</div>
+
+<div class="container">
+  <h2>コピー用：商品名</h2>
+  <textarea id="copy-title" rows="2" placeholder="生成ボタンを押すと表示されます"></textarea>
+  <button onclick="copyTitle()">📋 商品名をコピー</button>
+
+  <h2>コピー用：商品説明</h2>
+  <textarea id="copy-desc" rows="10" placeholder="生成ボタンを押すと表示されます"></textarea>
+  <button onclick="copyDesc()">📋 商品説明をコピー</button>
+</div>
 
 <script src="script.js"></script>
 </body>

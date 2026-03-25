@@ -1,23 +1,23 @@
 // ===== ユニット順序 =====
 const officialUnitOrder = [
-  "fine",
-  "Trickstar",
-  "流星隊",
-  "ALKALOID",
-  "Eden",
-  "Valkyrie",
-  "2wink",
-  "Crazy:B",
-  "UNDEAD",
-  "Ra*bits",
-  "紅月",
-  "MELLOW DEAR US",
-  "Knights",
-  "Switch",
-  "MaM",
-  "Double Face",
-  "Special For Princess",
-  "教師",
+  "🕊️ fine",
+  "⭐ Trickstar",
+  "🌠 流星隊",
+  "🃏 ALKALOID",
+  "🍎 Eden",
+  "⚙️ Valkyrie",
+  "👯 2wink",
+  "🐝 Crazy:B",
+  "🦇 UNDEAD",
+  "🐰 Ra*bits",
+  "🌙 紅月",
+  "🍫 MELLOW DEAR US",
+  "♞ Knights",
+  "🧙 Switch",
+  "🤠 MaM",
+  "🎭 Double Face",
+  "🦄 Special For Princess",
+  "👨‍🏫 教師",
 ];
 
 // ===== キャラクター + ユニット情報 =====
@@ -199,11 +199,14 @@ window.addEventListener("DOMContentLoaded", () => {
     unitMap[c.unit].push(c);
   });
 
-  officialUnitOrder.forEach(unitName => {
+  officialUnitOrder.forEach(fullUnitName => {
+    // 絵文字を除いた純粋なユニット名を取得
+    const unitName = fullUnitName.split(" ").slice(1).join(" ");
+    
     if (!unitMap[unitName]) return;
 
     const group = document.createElement("optgroup");
-    group.label = unitName;
+    group.label = fullUnitName;
 
     const unitOption = document.createElement("option");
     unitOption.value = `UNIT:${unitName}`;
@@ -272,7 +275,6 @@ function buildBadgeName() {
 function generateTitle(chars, goods, count, mainGoodInput, units) {
   const template = document.getElementById("template-title").value;
 
-  // ▼ キャラがいない場合はユニット名を使う
   let nameText = "";
   if (chars.length > 0) {
     nameText = chars.join("・");
@@ -286,10 +288,13 @@ function generateTitle(chars, goods, count, mainGoodInput, units) {
   if (!mainGood) mainGood = goods[0] || "";
 
   // ===== 枚数・セット数を自動整形 =====
-  let countText = count;
+  let countText = "";
   if (count.trim()) {
-    const num = count.trim();
-    countText = `${num}点セット`;
+    const num = parseInt(count.trim());
+    if (num > 1) {
+      countText = `${num}点セット`;
+    }
+    // 1点の場合は空文字列
   }
 
   return template
@@ -307,15 +312,35 @@ function generateDescription(chars, units, goods, count) {
   else if (units.length > 0) displayName = units.join("・");
   else displayName = "キャラクター";
 
-  const badgeFullName = buildBadgeName();
-  const goodsList = [...goods];
+  const goodsList = [];
+  const processedGoods = new Set();
 
-  if (goods.includes("コレ缶") && badgeFullName) {
-    goodsList.push(badgeFullName);
-  }
+  goods.forEach(g => {
+    if (g === "コレ缶") {
+      const badgeFullName = buildBadgeName();
+      if (badgeFullName && !processedGoods.has("コレ缶")) {
+        goodsList.push(badgeFullName);
+        processedGoods.add("コレ缶");
+      }
+    } else {
+      if (!processedGoods.has(g)) {
+        goodsList.push(g);
+        processedGoods.add(g);
+      }
+    }
+  });
 
   const goodsText = goodsList.join("\n");
-  const countText = count || "セット";
+
+  // ===== 枚数・セット数を自動整形 =====
+  let countText = "";
+  if (count.trim()) {
+    const num = parseInt(count.trim());
+    if (num > 1) {
+      countText = `${num}点セット`;
+    }
+    // 1点の場合は空文字列
+  }
 
   const packing = generatePackingMethod(goods);
 
@@ -372,13 +397,19 @@ function generateDescription(chars, units, goods, count) {
 
   // コレ缶検索ワード
   if (goods.includes("コレ缶")) {
-    const year = document.getElementById("badge-year").value;
-    const month = document.getElementById("badge-month").value;
-    const side = document.getElementById("badge-side").value;
+    const badgeYearSelects = [...document.getElementById("badge-year").selectedOptions];
+    const badgeMonthSelects = [...document.getElementById("badge-month").selectedOptions];
+    const badgeSideSelects = [...document.getElementById("badge-side").selectedOptions];
 
-    if (year) unitKeywordsSet.add(year);
-    if (month) unitKeywordsSet.add(month);
-    if (side) unitKeywordsSet.add(side);
+    badgeYearSelects.forEach(opt => {
+      if (opt.value) unitKeywordsSet.add(opt.value);
+    });
+    badgeMonthSelects.forEach(opt => {
+      if (opt.value) unitKeywordsSet.add(opt.value);
+    });
+    badgeSideSelects.forEach(opt => {
+      if (opt.value) unitKeywordsSet.add(opt.value);
+    });
 
     unitKeywordsSet.add("コレクション缶バッジ");
   }
