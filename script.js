@@ -29,17 +29,17 @@ const characters = [
   { name: "伏見弓弦", unit: "fine", unitKeywords: ["fine", "フィーネ"] },
 
   // Trickstar
-  { name: "氷鷹北斗", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター"] },
-  { name: "明星スバル", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター"] },
-  { name: "遊木真", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター"] },
-  { name: "衣更真緒", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター"] },
+  { name: "氷鷹北斗", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター", "トリスタ"] },
+  { name: "明星スバル", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター", "トリスタ"] },
+  { name: "遊木真", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター", "トリスタ"] },
+  { name: "衣更真緒", unit: "Trickstar", unitKeywords: ["Trickstar", "トリックスター", "トリスタ"] },
 
   // 流星隊
-  { name: "守沢千秋", unit: "流星隊", unitKeywords: ["流星隊", "りゅうせいたい"] },
-  { name: "深海奏汰", unit: "流星隊", unitKeywords: ["流星隊", "りゅうせいたい"] },
-  { name: "南雲鉄虎", unit: "流星隊", unitKeywords: ["流星隊", "りゅうせいたい"] },
-  { name: "高峯翠", unit: "流星隊", unitKeywords: ["流星隊", "りゅうせいたい"] },
-  { name: "仙石忍", unit: "流星隊", unitKeywords: ["流星隊", "りゅうせいたい"] },
+  { name: "守沢千秋", unit: "流星隊", unitKeywords: ["流星隊"] },
+  { name: "深海奏汰", unit: "流星隊", unitKeywords: ["流星隊"] },
+  { name: "南雲鉄虎", unit: "流星隊", unitKeywords: ["流星隊"] },
+  { name: "高峯翠", unit: "流星隊", unitKeywords: ["流星隊"] },
+  { name: "仙石忍", unit: "流星隊", unitKeywords: ["流星隊"] },
 
   // ALKALOID
   { name: "天城一彩", unit: "ALKALOID", unitKeywords: ["ALKALOID", "アルカロイド"] },
@@ -62,10 +62,10 @@ const characters = [
   { name: "葵ゆうた", unit: "2wink", unitKeywords: ["2wink", "ツインク"] },
 
   // Crazy:B
-  { name: "天城燐音", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ"] },
-  { name: "HiMERU", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ"] },
-  { name: "桜河こはく", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ"] },
-  { name: "椎名ニキ", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ"] },
+  { name: "天城燐音", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ", "クレイジービー"] },
+  { name: "HiMERU", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ", "クレイジービー"] },
+  { name: "桜河こはく", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ", "クレイジービー"] },
+  { name: "椎名ニキ", unit: "Crazy:B", unitKeywords: ["Crazy:B", "クレビ", "クレイジービー"] },
 
   // UNDEAD
   { name: "朔間零", unit: "UNDEAD", unitKeywords: ["UNDEAD", "アンデッド"] },
@@ -86,10 +86,10 @@ const characters = [
   { name: "滝維吹", unit: "紅月", unitKeywords: ["紅月", "あかつき"] },
 
   // MELLOW DEAR US
-  { name: "小鹿ジュイス", unit: "MELLOW DEAR US", unitKeywords: ["メロアス"] },
-  { name: "円果望見", unit: "MELLOW DEAR US", unitKeywords: ["メロアス"] },
-  { name: "久遠舞珠", unit: "MELLOW DEAR US", unitKeywords: ["メロアス"] },
-  { name: "甘楽チトセ", unit: "MELLOW DEAR US", unitKeywords: ["メロアス"] },
+  { name: "小鹿ジュイス", unit: "MELLOW DEAR US", unitKeywords: ["メロアス", "MDU"] },
+  { name: "円果望見", unit: "MELLOW DEAR US", unitKeywords: ["メロアス", "MDU"] },
+  { name: "久遠舞珠", unit: "MELLOW DEAR US", unitKeywords: ["メロアス", "MDU"] },
+  { name: "甘楽チトセ", unit: "MELLOW DEAR US", unitKeywords: ["メロアス", "MDU"] },
 
   // Knights
   { name: "月永レオ", unit: "Knights", unitKeywords: ["Knights", "ナイツ"] },
@@ -99,26 +99,26 @@ const characters = [
   { name: "朱桜司", unit: "Knights", unitKeywords: ["Knights", "ナイツ"] },
 
   // Switch
-  { name: "逆先夏目", unit: "Switch", unitKeywords: ["Switch", "スウィッチ"] },
-  { name: "青葉つむぎ", unit: "Switch", unitKeywords: ["Switch", "スウィッチ"] },
-  { name: "春川宙", unit: "Switch", unitKeywords: ["Switch", "スウィッチ"] },
+  { name: "逆先夏目", unit: "Switch", unitKeywords: ["Switch", "スイッチ", "スウィッチ"] },
+  { name: "青葉つむぎ", unit: "Switch", unitKeywords: ["Switch", "スイッチ", "スウィッチ"] },
+  { name: "春川宙", unit: "Switch", unitKeywords: ["Switch", "スイッチ", "スウィッチ"] },
 
   // MaM
-  { name: "三毛縞斑", unit: "MaM", unitKeywords: ["MaM", "マム"] },
+  { name: "三毛縞斑", unit: "MaM", unitKeywords: ["MaM", "マム", "ママ"] },
 
   // Double Face
-  { name: "三毛縞斑", unit: "Double Face", unitKeywords: ["Double Face", "ダブルフェイス"] },
-  { name: "桜河こはく", unit: "Double Face", unitKeywords: ["Double Face", "ダブルフェイス"] },
+  { name: "三毛縞斑", unit: "Double Face", unitKeywords: ["Double Face", "ダブルフェイス", "ダブフェ"] },
+  { name: "桜河こはく", unit: "Double Face", unitKeywords: ["Double Face", "ダブルフェイス", "ダブフェ"] },
 
   // Special For Princess
-  { name: "エス（冴霧 笑主）", unit: "Special For Princess", unitKeywords: ["エスプリ"] },
-  { name: "カンナ（名都 神無）", unit: "Special For Princess", unitKeywords: ["エスプリ"] },
-  { name: "ユメ（花群 冬芽）", unit: "Special For Princess", unitKeywords: ["エスプリ"] },
-  { name: "ライカ（宝丈 萊香）", unit: "Special For Princess", unitKeywords: ["エスプリ"] },
+  { name: "エス（冴霧笑主）", unit: "Special For Princess!", unitKeywords: ["エスプリ"] },
+  { name: "カンナ（名都神無）", unit: "Special For Princess!", unitKeywords: ["エスプリ"] },
+  { name: "ユメ（花群冬芽）", unit: "Special For Princess!", unitKeywords: ["エスプリ"] },
+  { name: "ライカ（宝丈萊香）", unit: "Special For Princess!", unitKeywords: ["エスプリ"] },
 
   // 教師
-  { name: "佐賀美陣", unit: "教師", unitKeywords: ["教師"] },
-  { name: "椚章臣", unit: "教師", unitKeywords: ["教師"] },
+  { name: "佐賀美陣", unit: "Jin & Akiomi", unitKeywords: ["教師", "先生"] },
+  { name: "椚章臣", unit: "Jin & Akiomi", unitKeywords: ["教師", "先生"] },
 ];
 
 // ===== グッズカテゴリ =====
@@ -451,6 +451,7 @@ function copyTitle() {
   const textarea = document.getElementById("copy-title");
   textarea.select();
   document.execCommand("copy");
+  textarea.blur();
   alert("商品名をコピーしました。");
 }
 
@@ -458,5 +459,6 @@ function copyDesc() {
   const textarea = document.getElementById("copy-desc");
   textarea.select();
   document.execCommand("copy");
+  textarea.blur();
   alert("商品説明をコピーしました。");
 }
