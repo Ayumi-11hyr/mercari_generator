@@ -1,3 +1,25 @@
+// ===== ユニット順序 =====
+const officialUnitOrder = [
+  "fine",
+  "Trickstar",
+  "流星隊",
+  "ALKALOID",
+  "Eden",
+  "Valkyrie",
+  "2wink",
+  "Crazy:B",
+  "UNDEAD",
+  "Ra*bits",
+  "紅月",
+  "MELLOW DEAR US",
+  "Knights",
+  "Switch",
+  "MaM",
+  "Double Face",
+  "Special For Princess",
+  "教師",
+];
+
 // ===== キャラクター + ユニット情報 =====
 const characters = [
   // fine
@@ -102,54 +124,68 @@ const characters = [
 // ===== グッズカテゴリ =====
 const goodsCategories = {
   "アニメイトカフェ関連": [
-    { name: "アクスタ", keywords: ["アクリルスタンド"] },
-    { name: "コースター", keywords: [] },
-    { name: "ステッカー", keywords: ["シール"] },
+    { name: "アニカフェ アクスタ", keywords: ["アクリルスタンド", "アニカフェ"], type: "acrylic", category: "domestic" },
+    { name: "アニカフェ コースター", keywords: ["アニカフェ"], type: "paper", category: "domestic" },
+    { name: "アニカフェ ステッカー", keywords: ["シール", "アニカフェ"], type: "paper", category: "domestic" },
   ],
 
   "ぱしゃっつ（P.A.shots!!）": [
-    // Vol.1〜Vol.6 × Private / Action
-    { name: "ぱしゃっつ Vol.1 Private", keywords: ["P.A.shots!!", "Vol.1", "Private"] },
-    { name: "ぱしゃっつ Vol.1 Action", keywords: ["P.A.shots!!", "Vol.1", "Action"] },
-
-    { name: "ぱしゃっつ Vol.2 Private", keywords: ["P.A.shots!!", "Vol.2", "Private"] },
-    { name: "ぱしゃっつ Vol.2 Action", keywords: ["P.A.shots!!", "Vol.2", "Action"] },
-
-    { name: "ぱしゃっつ Vol.3 Private", keywords: ["P.A.shots!!", "Vol.3", "Private"] },
-    { name: "ぱしゃっつ Vol.3 Action", keywords: ["P.A.shots!!", "Vol.3", "Action"] },
-
-    { name: "ぱしゃっつ Vol.4 Private", keywords: ["P.A.shots!!", "Vol.4", "Private"] },
-    { name: "ぱしゃっつ Vol.4 Action", keywords: ["P.A.shots!!", "Vol.4", "Action"] },
-
-    { name: "ぱしゃっつ Vol.5 Private", keywords: ["P.A.shots!!", "Vol.5", "Private"] },
-    { name: "ぱしゃっつ Vol.5 Action", keywords: ["P.A.shots!!", "Vol.5", "Action"] },
-
-    { name: "ぱしゃっつ Vol.6 Private", keywords: ["P.A.shots!!", "Vol.6", "Private"] },
-    { name: "ぱしゃっつ Vol.6 Action", keywords: ["P.A.shots!!", "Vol.6", "Action"] },
-
-  // TRIPシリーズ（単独）
-  { name: "ぱしゃっつ TRIPシリーズ", keywords: ['ALBUM SERIES "TRIP"', "P.A.shots!!"] },
-
+    { name: "ぱしゃっつ Vol.1 Private", keywords: ["P.A.shots!!", "Vol.1", "Private"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.1 Action", keywords: ["P.A.shots!!", "Vol.1", "Action"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.2 Private", keywords: ["P.A.shots!!", "Vol.2", "Private"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.2 Action", keywords: ["P.A.shots!!", "Vol.2", "Action"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.3 Private", keywords: ["P.A.shots!!", "Vol.3", "Private"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.3 Action", keywords: ["P.A.shots!!", "Vol.3", "Action"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.4 Private", keywords: ["P.A.shots!!", "Vol.4", "Private"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.4 Action", keywords: ["P.A.shots!!", "Vol.4", "Action"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.5 Private", keywords: ["P.A.shots!!", "Vol.5", "Private"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.5 Action", keywords: ["P.A.shots!!", "Vol.5", "Action"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.6 Private", keywords: ["P.A.shots!!", "Vol.6", "Private"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ Vol.6 Action", keywords: ["P.A.shots!!", "Vol.6", "Action"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ 9周年", keywords: ["P.A.shots!!", "9周年"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ TRIPシリーズ", keywords: ['ALBUM SERIES "TRIP"', "P.A.shots!!"], type: "paper", category: "domestic" },
   ],
 
   "中国/海外限定グッズ": [
-    { name: "招募チェキ", keywords: ["限定スカウトチェキ風カード", "限定招募ポラロイド", "新春商品シリーズ"] },
-    { name: "序曲写真カード", keywords: [] },
+    { name: "招募チェキ", keywords: ["限定スカウトチェキ風カード", "限定招募ポラロイド", "新春商品シリーズ"], type: "paper", category: "overseas" },
+    { name: "序曲写真カード", keywords: [], type: "paper", category: "overseas" },
+    { name: "INS風カード", keywords: ["旅路カード"], type: "paper", category: "overseas" },
   ],
 
   "その他": [
-    { name: "あんスタチップス カード", keywords: [] }
+    { name: "あんスタチップス カード", keywords: [], type: "paper", category: "domestic" }
   ]
 };
 
-// ===== 公式ユニット順 =====
-const officialUnitOrder = [
-  "fine", "Trickstar", "流星隊", "ALKALOID",
-  "Eden", "Valkyrie", "2wink", "Crazy:B",
-  "UNDEAD", "Ra*bits", "紅月", "MELLOW DEAR US",
-  "Knights", "Switch", "MaM", "Double Face", "Special For Princess",
-  "教師"
-];
+// ===== 梱包方法生成 =====
+function generatePackingMethod(goods) {
+  const goodsOptions = document.getElementById("goods");
+  let hasAcrylic = false;
+  let hasPaper = false;
+
+  goods.forEach(g => {
+    const option = [...goodsOptions.options].find(o => o.value === g);
+    if (option && option.dataset.type) {
+      const type = option.dataset.type;
+      if (type === "acrylic") hasAcrylic = true;
+      if (type === "paper") hasPaper = true;
+    }
+  });
+
+  let packing = "以下で梱包し、封筒にお入れして郵送します。\n";
+
+  if (hasAcrylic && hasPaper) {
+    packing += "【アクリルスタンド】\n　画像の状態→梱包材二重\n\n";
+    packing += "【ステッカー・紙類】\n　画像の状態→両面厚紙補強\n\n";
+    packing += "⇒ まとめてOPP袋";
+  } else if (hasAcrylic) {
+    packing += "　画像の状態→梱包材二重";
+  } else if (hasPaper) {
+    packing += "　画像の状態→両面厚紙補強→水濡れ防止";
+  }
+
+  return packing;
+}
 
 // ===== 初期化 =====
 window.addEventListener("DOMContentLoaded", () => {
@@ -194,6 +230,8 @@ window.addEventListener("DOMContentLoaded", () => {
       opt.value = item.name;
       opt.textContent = item.name;
       opt.dataset.keywords = JSON.stringify(item.keywords);
+      opt.dataset.type = item.type;
+      opt.dataset.category = item.category;
       group.appendChild(opt);
     });
 
@@ -247,10 +285,17 @@ function generateTitle(chars, goods, count, mainGoodInput, units) {
   let mainGood = mainGoodInput.trim();
   if (!mainGood) mainGood = goods[0] || "";
 
+  // ===== 枚数・セット数を自動整形 =====
+  let countText = count;
+  if (count.trim()) {
+    const num = count.trim();
+    countText = `${num}点セット`;
+  }
+
   return template
     .replace("{NAME}", nameText)
     .replace("{GOOD}", mainGood)
-    .replace("{COUNT}", count || "");
+    .replace("{COUNT}", countText);
 }
 
 // ===== 説明文生成 =====
@@ -272,6 +317,18 @@ function generateDescription(chars, units, goods, count) {
   const goodsText = goodsList.join("\n");
   const countText = count || "セット";
 
+  const packing = generatePackingMethod(goods);
+
+  // ===== 商品の状態を生成 =====
+  const conditions = [];
+  if (document.getElementById("initial-damage").checked) {
+    conditions.push("※素人保管ですので、初期傷など気にされる場合は購入お控えください。");
+  }
+  if (document.getElementById("card-curve").checked) {
+    conditions.push("※カードの性質により、少し反りが見られます。");
+  }
+  const conditionsText = conditions.join("\n");
+
   const unitKeywordsSet = new Set();
   const charSearchSet = new Set(chars);
 
@@ -292,13 +349,26 @@ function generateDescription(chars, units, goods, count) {
       });
   });
 
-  // グッズ検索ワード
+  // グッズ検索ワード + カテゴリ別ワード
+  let hasOverseas = false;
   goods.forEach(g => {
     const option = [...document.getElementById("goods").options].find(o => o.value === g);
-    if (option && option.dataset.keywords) {
-      JSON.parse(option.dataset.keywords).forEach(k => unitKeywordsSet.add(k));
+    if (option) {
+      if (option.dataset.keywords) {
+        JSON.parse(option.dataset.keywords).forEach(k => unitKeywordsSet.add(k));
+      }
+      if (option.dataset.category === "overseas") {
+        hasOverseas = true;
+      }
     }
   });
+
+  // 中国/海外限定の場合、共通ワードを追加
+  if (hasOverseas) {
+    unitKeywordsSet.add("偶像夢幻祭");
+    unitKeywordsSet.add("中国限定");
+    unitKeywordsSet.add("海外限定");
+  }
 
   // コレ缶検索ワード
   if (goods.includes("コレ缶")) {
@@ -319,6 +389,8 @@ function generateDescription(chars, units, goods, count) {
     .replace("{NAME}", displayName)
     .replace("{COUNT}", countText)
     .replace("{GOODS}", goodsText)
+    .replace("{PACKING}", packing)
+    .replace("{CONDITIONS}", conditionsText)
     .replace("{SEARCH}", searchWords);
 }
 

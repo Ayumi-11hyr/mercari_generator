@@ -23,6 +23,18 @@
       font-size: 0.95rem;
     }
     select[multiple] { height: 260px; }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    label input[type="checkbox"] {
+      width: auto;
+      margin-right: 8px;
+      margin-bottom: 0;
+      padding: 0;
+      vertical-align: middle;
+    }
     button { cursor: pointer; }
     .hidden { display: none; }
   </style>
@@ -80,10 +92,16 @@
 
 <hr>
 
-<h2>⑤ 商品名テンプレート</h2>
+<h2>⑤ 商品の状態（任意）</h2>
+<label><input type="checkbox" id="initial-damage"> 初期傷について記載</label>
+<label><input type="checkbox" id="card-curve"> カードの反りについて記載</label>
+
+<hr>
+
+<h2>⑥ 商品名テンプレート</h2>
 <textarea id="template-title" rows="2">{NAME} {GOOD} {COUNT}</textarea>
 
-<h2>⑥ 説明文テンプレート</h2>
+<h2>⑦ 説明文テンプレート</h2>
 <textarea id="template-description" rows="14">
 ●商品概要
 {NAME}　{COUNT}
@@ -91,14 +109,12 @@
 
 
 ●梱包方法
-まとめてOPP袋→厚紙補強→水濡れ防止
+{PACKING}
 
 
 ●商品の状態
 開封のみ、未使用品
-※素人保管のため気にされる方は購入お控えください
-
-
+{CONDITIONS}
 
 
 
