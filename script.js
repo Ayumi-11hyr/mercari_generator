@@ -262,13 +262,24 @@ document.getElementById("goods").addEventListener("change", () => {
 });
 
 // ===== コレ缶の正式名称生成 =====
-function buildBadgeName() {
-  const year = document.getElementById("badge-year").value;
-  const month = document.getElementById("badge-month").value;
-  const side = document.getElementById("badge-side").value;
+function buildBadgeNames() {
+  const yearSelects = [...document.getElementById("badge-year").selectedOptions].map(o => o.value);
+  const monthSelects = [...document.getElementById("badge-month").selectedOptions].map(o => o.value);
+  const sideSelects = [...document.getElementById("badge-side").selectedOptions].map(o => o.value);
 
-  if (!year || !month || !side) return "";
-  return `コレ缶［${year} ${month}］-${side} Side-`;
+  const badgeNames = [];
+
+  yearSelects.forEach(year => {
+    monthSelects.forEach(month => {
+      sideSelects.forEach(side => {
+        if (year && month && side) {
+          badgeNames.push(`コレ缶［${year} ${month}］-${side} Side-`);
+        }
+      });
+    });
+  });
+
+  return badgeNames;
 }
 
 // ===== 商品名生成 =====
@@ -317,11 +328,13 @@ function generateDescription(chars, units, goods, count) {
 
   goods.forEach(g => {
     if (g === "コレ缶") {
-      const badgeFullName = buildBadgeName();
-      if (badgeFullName && !processedGoods.has("コレ缶")) {
-        goodsList.push(badgeFullName);
-        processedGoods.add("コレ缶");
-      }
+      const badgeFullNames = buildBadgeNames();
+      badgeFullNames.forEach(badgeName => {
+        if (!processedGoods.has(badgeName)) {
+          goodsList.push(badgeName);
+          processedGoods.add(badgeName);
+        }
+      });
     } else {
       if (!processedGoods.has(g)) {
         goodsList.push(g);
