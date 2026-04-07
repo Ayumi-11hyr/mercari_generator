@@ -149,11 +149,11 @@ const goodsCategories = {
   "中国/海外限定グッズ": [
     { name: "招募チェキ", keywords: ["限定スカウトチェキ風カード", "限定招募ポラロイド", "新春商品シリーズ"], type: "paper", category: "overseas" },
     { name: "序曲写真カード", keywords: [], type: "paper", category: "overseas" },
-    { name: "INS風カード", keywords: ["旅路カード"], type: "paper", category: "overseas" },
+    { name: "INS風カード", keywords: ["旅路カード", "ins風", "クリアカード"], type: "paper", category: "overseas" },
   ],
 
   "その他": [
-    { name: "あんスタチップス カード", keywords: [], type: "paper", category: "domestic" }
+    { name: "あんスタチップス カード", keywords: ["あんスタチップス"], type: "paper", category: "domestic" }
   ]
 };
 
@@ -181,7 +181,7 @@ function generatePackingMethod(goods) {
   } else if (hasAcrylic) {
     packing += "　画像の状態→梱包材二重";
   } else if (hasPaper) {
-    packing += "　画像の状態→両面厚紙補強→水濡れ防止";
+    packing += "　画像の状態→OPP袋→両面厚紙補強→水濡れ防止";
   }
 
   return packing;
@@ -282,21 +282,73 @@ function buildBadgeNames() {
   return badgeNames;
 }
 
+function buildGoodsTitle(goods) {
+  const detailed = [];
+  const seen = new Set();
+  const pashatts = [];
+
+  goods.forEach(g => {
+    if (!seen.has(g)) {
+      seen.add(g);
+      if (/^ぱしゃっつ/.test(g)) {
+        pashatts.push(g);
+      } else {
+        detailed.push(g);
+      }
+    }
+  });
+
+  if (pashatts.length > 0) {
+    const combinedPashatts = pashatts.map((name, index) => {
+      const suffix = name.replace(/^ぱしゃっつ\s*/i, "");
+      return index === 0 ? `ぱしゃっつ${suffix ? ` ${suffix}` : ""}` : suffix;
+    }).join(" ");
+    detailed.unshift(combinedPashatts);
+  }
+
+  return detailed;
+}
+
 // ===== 商品名生成 =====
 function generateTitle(chars, goods, count, mainGoodInput, units) {
   const template = document.getElementById("template-title").value;
+  const anonymousShipping = document.getElementById("anonymous-shipping").checked;
+  const formatStyle = document.querySelector('input[name="format-style"]:checked')?.value || "all";
 
   let nameText = "";
-  if (chars.length > 0) {
-    nameText = chars.join("・");
-  } else if (units.length > 0) {
-    nameText = units.join("・");
+  if (formatStyle === "summary") {
+    // パターン②: キャラクター名は複数表示、グッズはまとめる
+    if (chars.length > 0) {
+      nameText = chars.join("・"); // 複数キャラクターを表示
+    } else if (units.length > 0) {
+      nameText = units.join("・"); // 複数ユニットを表示
+    } else {
+      nameText = "キャラクター";
+    }
   } else {
-    nameText = "キャラクター";
+    // パターン①: すべて記載形式（従来形式）
+    if (chars.length > 0) {
+      nameText = chars.join("・");
+    } else if (units.length > 0) {
+      nameText = units.join("・");
+    } else {
+      nameText = "キャラクター";
+    }
   }
 
   let mainGood = mainGoodInput.trim();
-  if (!mainGood) mainGood = goods[0] || "";
+  
+  if (formatStyle === "summary") {
+    // パターン②: グッズは入力値のみ。汎用入力がなければ詳細をまとめて表示
+    if (!mainGood) {
+      mainGood = buildGoodsTitle(goods).join(" ");
+    }
+  } else {
+    // パターン①: すべて記載する場合、指定がなければ全グッズを表示
+    if (!mainGood) {
+      mainGood = buildGoodsTitle(goods).join(" ");
+    }
+  }
 
   // ===== 枚数・セット数を自動整形 =====
   let countText = "";
@@ -308,10 +360,17 @@ function generateTitle(chars, goods, count, mainGoodInput, units) {
     // 1点の場合は空文字列
   }
 
-  return template
+  let result = template
     .replace("{NAME}", nameText)
     .replace("{GOOD}", mainGood)
     .replace("{COUNT}", countText);
+
+  // 匿名配送の場合は先頭に【匿名配送】を追加
+  if (anonymousShipping) {
+    result = "【匿名配送】" + result;
+  }
+
+  return result;
 }
 
 // ===== 説明文生成 =====
@@ -335,11 +394,12 @@ function generateDescription(chars, units, goods, count) {
           processedGoods.add(badgeName);
         }
       });
-    } else {
-      if (!processedGoods.has(g)) {
-        goodsList.push(g);
-        processedGoods.add(g);
-      }
+      return;
+    }
+
+    if (!processedGoods.has(g)) {
+      goodsList.push(g);
+      processedGoods.add(g);
     }
   });
 

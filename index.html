@@ -86,7 +86,8 @@
       color: #3498db;
     }
 
-    label input[type="checkbox"] {
+    label input[type="checkbox"],
+    label input[type="radio"] {
       width: 20px;
       height: 20px;
       margin-right: 10px;
@@ -264,13 +265,21 @@
   <h2>④ 商品名に入れる代表グッズ（任意）</h2>
   <input id="main-good" placeholder="例：コレ缶">
 
-  <h2>⑤ 商品の状態（任意）</h2>
+  <h2>⑤ 匿名配送</h2>
+  <label><input type="checkbox" id="anonymous-shipping"> 匿名配送を利用する</label>
+
+  <h2>⑥ 複数種類の場合の商品名フォーマット</h2>
+  <div class="info-box">💡 複数のキャラクターやグッズを選択した場合のまとめ方を選択</div>
+  <label style="margin-bottom: 12px;"><input type="radio" name="format-style" value="all" checked> グッズ名をすべて記載する</label>
+  <label><input type="radio" name="format-style" value="summary"> グッズ名をまとめる</label>
+
+  <h2>⑦ 商品の状態（任意）</h2>
   <label><input type="checkbox" id="initial-damage"> 初期傷について記載</label>
   <label><input type="checkbox" id="card-curve"> カードの反りについて記載</label>
 </div>
 
 <div class="container">
-  <h2>⑥ 商品名テンプレート</h2>
+  <h2>⑧ 商品名テンプレート</h2>
   <div class="info-box">
     <strong>📝 使用可能なプレースホルダー</strong><br>
     {NAME} = キャラクター名またはユニット名<br>
@@ -279,14 +288,17 @@
   </div>
   <textarea id="template-title" rows="2">{NAME} {GOOD} {COUNT}</textarea>
 
-  <h2>⑦ 説明文テンプレート</h2>
+  <h2>⑨ 説明文テンプレート</h2>
   <div class="info-box">
     <strong>📝 使用可能なプレースホルダー</strong><br>
     {NAME} = キャラクター名またはユニット名 | {COUNT} = 枚数・セット数<br>
     {GOODS} = 全グッズ一覧 | {PACKING} = 梱包方法<br>
     {CONDITIONS} = 商品の状態 | {SEARCH} = 検索用キーワード
   </div>
-  <textarea id="template-description" rows="12">●商品概要
+  <textarea id="template-description" rows="12">★説明文をご覧いただき、質問なければ即購入いただいて問題ありません。
+
+
+●商品概要
 {NAME}　{COUNT}
 {GOODS}
 
