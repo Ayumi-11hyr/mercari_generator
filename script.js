@@ -123,10 +123,9 @@ const characters = [
 
 // ===== グッズカテゴリ =====
 const goodsCategories = {
-  "アニメイトカフェ関連": [
-    { name: "アニカフェ アクスタ", keywords: ["アクリルスタンド", "アニカフェ"], type: "acrylic", category: "domestic" },
-    { name: "アニカフェ コースター", keywords: ["アニカフェ"], type: "paper", category: "domestic" },
-    { name: "アニカフェ ステッカー", keywords: ["シール", "アニカフェ"], type: "paper", category: "domestic" },
+  "ミュージアムカード": [
+    { name: "Museum Card Exhibition No.1", keywords: ["Museum Card", "Exhibition No.1"], type: "paper", category: "domestic" },
+    { name: "Museum Card Exhibition No.2", keywords: ["Museum Card", "Exhibition No.2"], type: "paper", category: "domestic" },
   ],
 
   "ぱしゃっつ（P.A.shots!!）": [
@@ -143,6 +142,7 @@ const goodsCategories = {
     { name: "ぱしゃっつ Vol.6 Private", keywords: ["P.A.shots!!", "Vol.6", "Private"], type: "paper", category: "domestic" },
     { name: "ぱしゃっつ Vol.6 Action", keywords: ["P.A.shots!!", "Vol.6", "Action"], type: "paper", category: "domestic" },
     { name: "ぱしゃっつ 9周年", keywords: ["P.A.shots!!", "9周年"], type: "paper", category: "domestic" },
+    { name: "ぱしゃっつ 10周年", keywords: ["gracolle P.A.shots!! ES 10th Anniversary", "P.A.shots!!", "10周年"], type: "paper", category: "domestic" },
     { name: "ぱしゃっつ TRIPシリーズ", keywords: ['ALBUM SERIES "TRIP"', "P.A.shots!!"], type: "paper", category: "domestic" },
   ],
 
@@ -153,23 +153,84 @@ const goodsCategories = {
   ],
 
   "その他": [
-    { name: "あんスタチップス カード", keywords: ["あんスタチップス"], type: "paper", category: "domestic" }
+    { name: "あんスタチップス カード", keywords: ["あんスタチップス"], type: "paper", category: "domestic" },
+    { name: "プチプリ", keywords: ["プチプリ 【ES 9th Anniv.】 TORRENT／SPARK", "プチプリ 【ES 9th Anniv.】 FLARE／STORM", "プチプリ"], type: "paper", category: "domestic" }
   ]
 };
 
+const animeCafeSeries = [
+  "アニカフェ ホリデー",
+  "アニカフェ スタフォニ",
+  "アニカフェ イースター",
+];
+
+const animeCafeItems = [
+  { name: "アクスタ", type: "acrylic", keywords: ["アクリルスタンド", "アニカフェ"] },
+  { name: "コースター", type: "paper", keywords: ["アニカフェ"] },
+  { name: "ステッカー", type: "paper", keywords: ["シール", "アニカフェ"] },
+  { name: "缶バッジ", type: "paper", keywords: ["缶バッジ", "アニカフェ"] },
+];
+
+function getGoodType(good) {
+  const goodsOptions = [...document.getElementById("goods").options];
+  const option = goodsOptions.find(o => o.value === good);
+  if (option && option.dataset.type) return option.dataset.type;
+
+  const animeItem = animeCafeItems.find(item => good.endsWith(item.name));
+  if (animeItem) return animeItem.type;
+
+  if (good === "コレ缶") return "paper";
+  return null;
+}
+
+function getGoodKeywords(good) {
+  const goodsOptions = [...document.getElementById("goods").options];
+  const option = goodsOptions.find(o => o.value === good);
+  if (option && option.dataset.keywords) {
+    const keywords = JSON.parse(option.dataset.keywords);
+    if (good.startsWith("Museum Card Exhibition")) {
+      return [...keywords, good];
+    }
+    return keywords;
+  }
+
+  if (good.startsWith("アニカフェ")) {
+    const itemName = animeCafeItems.find(item => good.endsWith(item.name));
+    if (itemName) {
+      return [...itemName.keywords, "アニカフェ"];
+    }
+    return ["アニカフェ"];
+  }
+
+  return [];
+}
+
+function getDisplayGoodName(good) {
+  if (good.startsWith("Museum Card Exhibition")) {
+    return "ミュージアムカード";
+  }
+  return good;
+}
+
+function buildAnimeCafeGoods(series, items) {
+  const result = [];
+  series.forEach(seriesName => {
+    items.forEach(itemName => {
+      result.push(`${seriesName} ${itemName}`);
+    });
+  });
+  return result;
+}
+
 // ===== 梱包方法生成 =====
 function generatePackingMethod(goods) {
-  const goodsOptions = document.getElementById("goods");
   let hasAcrylic = false;
   let hasPaper = false;
 
   goods.forEach(g => {
-    const option = [...goodsOptions.options].find(o => o.value === g);
-    if (option && option.dataset.type) {
-      const type = option.dataset.type;
-      if (type === "acrylic") hasAcrylic = true;
-      if (type === "paper") hasPaper = true;
-    }
+    const type = getGoodType(g);
+    if (type === "acrylic") hasAcrylic = true;
+    if (type === "paper") hasPaper = true;
   });
 
   let packing = "以下で梱包し、封筒にお入れして郵送します。\n";
@@ -241,6 +302,12 @@ window.addEventListener("DOMContentLoaded", () => {
     goodsSelect.appendChild(group);
   });
 
+  const animeSeriesSelect = document.getElementById("anime-cafe-series");
+  const animeItemSelect = document.getElementById("anime-cafe-item");
+  animeSeriesSelect.addEventListener("change", () => {
+    animeItemSelect.classList.toggle("hidden", animeSeriesSelect.selectedOptions.length === 0);
+  });
+
   // ▼ コレ缶（特別扱い）
   const badgeGroup = document.createElement("optgroup");
   badgeGroup.label = "缶バッジ";
@@ -288,12 +355,13 @@ function buildGoodsTitle(goods) {
   const pashatts = [];
 
   goods.forEach(g => {
-    if (!seen.has(g)) {
-      seen.add(g);
+    const displayName = getDisplayGoodName(g);
+    if (!seen.has(displayName)) {
+      seen.add(displayName);
       if (/^ぱしゃっつ/.test(g)) {
         pashatts.push(g);
       } else {
-        detailed.push(g);
+        detailed.push(displayName);
       }
     }
   });
@@ -397,9 +465,10 @@ function generateDescription(chars, units, goods, count) {
       return;
     }
 
-    if (!processedGoods.has(g)) {
-      goodsList.push(g);
-      processedGoods.add(g);
+    const displayName = getDisplayGoodName(g);
+    if (!processedGoods.has(displayName)) {
+      goodsList.push(displayName);
+      processedGoods.add(displayName);
     }
   });
 
@@ -451,13 +520,10 @@ function generateDescription(chars, units, goods, count) {
   let hasOverseas = false;
   goods.forEach(g => {
     const option = [...document.getElementById("goods").options].find(o => o.value === g);
-    if (option) {
-      if (option.dataset.keywords) {
-        JSON.parse(option.dataset.keywords).forEach(k => unitKeywordsSet.add(k));
-      }
-      if (option.dataset.category === "overseas") {
-        hasOverseas = true;
-      }
+    const keywords = getGoodKeywords(g);
+    keywords.forEach(k => unitKeywordsSet.add(k));
+    if (option && option.dataset.category === "overseas") {
+      hasOverseas = true;
     }
   });
 
@@ -487,6 +553,9 @@ function generateDescription(chars, units, goods, count) {
     unitKeywordsSet.add("コレクション缶バッジ");
   }
 
+  // あんスタ共通検索ワード
+  unitKeywordsSet.add("あんさんぶるスターズ！！（あんスタ）");
+
   const searchWords = [...unitKeywordsSet, ...charSearchSet].join("\n");
 
   return template
@@ -505,7 +574,12 @@ function generate() {
   const chars = selected.filter(v => !v.startsWith("UNIT:"));
   const units = selected.filter(v => v.startsWith("UNIT:")).map(v => v.replace("UNIT:", ""));
 
-  const goods = [...document.getElementById("goods").selectedOptions].map(o => o.value);
+  const selectedGoods = [...document.getElementById("goods").selectedOptions].map(o => o.value);
+  const selectedSeries = [...document.getElementById("anime-cafe-series").selectedOptions].map(o => o.value);
+  const selectedItems = [...document.getElementById("anime-cafe-item").selectedOptions].map(o => o.value);
+  const animeCafeGoods = buildAnimeCafeGoods(selectedSeries, selectedItems);
+  const goods = [...selectedGoods, ...animeCafeGoods];
+
   const count = document.getElementById("count").value;
   const mainGood = document.getElementById("main-good").value;
 
