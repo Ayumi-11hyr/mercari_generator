@@ -160,7 +160,8 @@ const goodsCategories = {
 
 const animeCafeSeries = [
   "アニカフェ ホリデー",
-  "アニカフェ スタフォニ",
+  "アニカフェ スタフォニ 3rd",
+  "アニカフェ スタフォニ 4th",
   "アニカフェ イースター",
 ];
 
@@ -551,6 +552,10 @@ function generateDescription(chars, units, goods, count) {
     });
 
     unitKeywordsSet.add("コレクション缶バッジ");
+  }
+
+  if (goods.some(g => g.includes("アニカフェ スタフォニ 4th"))) {
+    unitKeywordsSet.add("Ensemble Stars!! Cast Live Starry Symphony -Superbloom-");
   }
 
   // あんスタ共通検索ワード
